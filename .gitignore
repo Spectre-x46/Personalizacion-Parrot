@@ -1,0 +1,22 @@
+# Ignorar TODO por defecto
+*
+*/
+
+# Pero permitir explícitamente lo que SÍ queremos versionar
+!bspwm/
+!sxhkd/
+!polybar/
+!picom/
+!kitty/
+!.gitignore
+
+# Y dentro de esas carpetas, todos los archivos
+!bspwm/**
+!sxhkd/**
+!polybar/**
+!picom/**
+!kitty/**
+
+# Ignorar el backup de polybar y archivos temporales
+polybar.bak/
+polybar/hack/.target
