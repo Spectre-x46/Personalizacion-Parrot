@@ -1,0 +1,99 @@
+# Terminal
+super + Return
+    /opt/kitty/bin/kitty
+
+# Launcher
+super + d
+    /usr/bin/rofi -show drun
+
+# Reload sxhkd
+super + Escape
+    pkill -USR1 -x sxhkd
+
+# Firefox
+super + shift + f
+    /usr/bin/firefox
+
+# File manager
+super + shift + e
+    thunar
+
+# Screenshot full
+Print
+    scrot ~/Imágenes/screenshots/%Y-%m-%d_%H-%M-%S.png
+
+# Screenshot selección
+super + Print
+    scrot -s ~/Imágenes/screenshots/%Y-%m-%d_%H-%M-%S.png
+
+# ==========================================
+# BSPWM
+# ==========================================
+
+# Quit / restart
+super + alt + {q,r}
+    bspc {quit,wm -r}
+
+# Cerrar ventana
+super + {_,shift + }q
+    bspc node -{c,k}
+
+# Monocle toggle
+super + m
+    bspc desktop -l next
+
+# Swap con mayor
+super + g
+    bspc node -s biggest.window
+
+# Estado ventana
+super + {t,shift + t,s,f}
+    bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# Flags
+super + ctrl + {m,x,y,z}
+    bspc node -g {marked,locked,sticky,private}
+
+# Focus con flechas
+super + {Left,Down,Up,Right}
+    bspc node -f {west,south,north,east}
+
+# Mover ventana
+super + shift + {Left,Down,Up,Right}
+    bspc node -s {west,south,north,east}
+
+# Siguiente/anterior desktop
+super + bracket{left,right}
+    bspc desktop -f {prev,next}.local
+
+# Último nodo/desktop
+super + {grave,Tab}
+    bspc {node,desktop} -f last
+
+# Focus/mover a desktop
+super + {_,shift + }{1-9,0}
+    bspc {desktop -f,node -d} '^{1-9,10}'
+
+# Preselect dirección
+super + ctrl + alt + {Left,Down,Up,Right}
+    bspc node -p {west,south,north,east}
+
+# Preselect ratio
+super + ctrl + {1-9}
+    bspc node -o 0.{1-9}
+
+# Cancelar preselect
+super + ctrl + alt + space
+    bspc node -p cancel
+
+# Resize
+super + alt + {Left,Down,Up,Right}
+    /home/neo/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
+
+# Lab menu
+super + shift + l
+    ~/.config/rofi/menu_lab.sh
+
+# Fix layout después de redimensionar VMware
+super + F5
+    xrandr --auto && bspc wm -r && ~/.config/polybar/launch.sh --hack
