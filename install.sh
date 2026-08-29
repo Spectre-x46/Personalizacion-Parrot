@@ -134,6 +134,26 @@ cp "$REPO_DIR/profiles/$PROFILE/machine.sh" "$CFG/bspwm/machine.sh"
 chmod +x "$CFG/bspwm/machine.sh"
 ok "picom.conf ($PROFILE) + machine.sh"
 
+# ------------------------------------- sesion de login (LightDM/GDM/SDDM)
+say "Registrando la sesion bspwm en el login manager"
+# Al compilar bspwm desde fuente NO se instala este .desktop (solo lo pone apt).
+# Sin el, bspwm no aparece como sesion para elegir y te quedas fuera del escritorio.
+if [ ! -f /usr/share/xsessions/bspwm.desktop ]; then
+  sudo tee /usr/share/xsessions/bspwm.desktop >/dev/null <<'DESK'
+[Desktop Entry]
+Name=bspwm
+Comment=Binary space partitioning window manager
+Exec=bspwm
+Type=Application
+DesktopNames=bspwm
+DESK
+  ok "creado /usr/share/xsessions/bspwm.desktop"
+else ok "bspwm.desktop ya existe"; fi
+# Preseleccionar bspwm para tu usuario (LightDM lee ~/.dmrc)
+if ! grep -q '^Session=bspwm' "$HOME/.dmrc" 2>/dev/null; then
+  printf '[Desktop]\nSession=bspwm\n' > "$HOME/.dmrc"; ok "~/.dmrc -> Session=bspwm"
+else ok "~/.dmrc ya apunta a bspwm"; fi
+
 # shell por defecto -> zsh
 if [ "${SHELL:-}" != "$(command -v zsh)" ]; then chsh -s "$(command -v zsh)" 2>/dev/null && ok "shell -> zsh" || warn "No pude cambiar el shell (hazlo con: chsh -s \$(which zsh))"; fi
 
@@ -145,7 +165,8 @@ nvim --headless "+Lazy! sync" +qa >/dev/null 2>&1 || warn "El sync de nvim se co
 cat <<EOF
 
   =====================================================================
-   LISTO. Cierra sesion y entra a bspwm (o reinicia).
+   LISTO. Reinicia: entraras directo a bspwm (sesion ya preseleccionada).
+   Si el login no te deja, elige "bspwm" en el menu de sesion de LightDM.
   =====================================================================
 EOF
 if [ "$PROFILE" = "victus" ]; then
