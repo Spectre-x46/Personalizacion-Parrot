@@ -30,17 +30,18 @@ preseleccionada; si no, elígela en el menú de LightDM).
 
 ---
 
-## ⚠️ Solo en el HP Victus: 3 pasos a mano (necesitan el hardware)
+## ⚠️ Solo en el HP Victus: 2 pasos a mano (necesitan el hardware)
 
-El `install.sh` deja el 90%; esto se cierra en el primer arranque real
+El `install.sh` deja el resto; esto se cierra en el primer arranque real
 (detalle en **[CAJAS.md](CAJAS.md)**):
 
 1. **Driver NVIDIA:** `sudo apt install nvidia-driver` (paquete puntual, NO upgrade).
-2. **Refresh del panel:** corre `xrandr` para ver tu salida (ej. `eDP-1`) y los Hz;
-   edita la línea de `~/.config/bspwm/machine.sh` con `--rate 144` (o los reales).
-3. **Batería / brillo** en la polybar:
+2. **Batería / brillo** en la polybar:
    - `ls /sys/class/power_supply/` → ajusta `battery=` / `adapter=` en `polybar/hack/modules.ini`
    - `ls /sys/class/backlight/` → ajusta `card =` del módulo backlight
+
+> El **refresh de pantalla** se ajusta solo al nativo del panel (**60 Hz** en el
+> Victus básico) vía `xrandr --auto` — no hay que tocar nada.
 
 ---
 

@@ -173,11 +173,10 @@ if [ "$PROFILE" = "victus" ]; then
 cat <<EOF
   FALTA a mano en la Victus (necesita el hardware presente):
     1) Driver NVIDIA:  sudo apt install nvidia-driver   (paquete puntual, NO upgrade)
-    2) Refresh del panel: corre  xrandr  para ver tu salida (ej eDP-1) y edita
-       la linea de ~/.config/bspwm/machine.sh con  --rate 144  (o los Hz reales).
-    3) Bateria/brillo en la polybar (ver CAJAS.md):
+    2) Bateria/brillo en la polybar (ver CAJAS.md):
          ls /sys/class/power_supply/   -> ajusta battery=/adapter= en polybar/hack/modules.ini
          ls /sys/class/backlight/      -> ajusta 'card =' del modulo backlight
+    (El refresh se ajusta solo al nativo del panel: 60 Hz en el Victus basico.)
   =====================================================================
 EOF
 fi

@@ -33,14 +33,15 @@ el perfil que elijas (`victus` o `vmware`).
 | Archivo | vmware (hoy) | victus (nuevo) |
 |---|---|---|
 | `profiles/<perfil>/picom.conf` | `xrender`, sin vsync (parche VM) | **`glx` + vsync** (acelerado por la RTX) |
-| `profiles/<perfil>/machine.sh` | `vmware-user-suid-wrapper`, `randr-watcher`, `xrandr --auto` | NVIDIA `ForceFullCompositionPipeline` + `xrandr --rate 144` |
+| `profiles/<perfil>/machine.sh` | `vmware-user-suid-wrapper`, `randr-watcher`, `xrandr --auto` | NVIDIA `ForceFullCompositionPipeline` + `xrandr --auto` (refresh nativo) |
 
 ### Cosas de la Caja 2 que se ajustan a mano en el primer arranque de la Victus
 Estos valores **solo se pueden saber con el hardware real** (por eso no van
 fijos en el repo):
 
-- **Refresh del panel** → `xrandr` para ver la salida (ej. `eDP-1`) y los Hz;
-  editar `~/.config/bspwm/machine.sh`.
+- **Refresh del panel** → **automático**: `xrandr --auto` toma el refresh nativo
+  del panel (**60 Hz** en el Victus básico). No hay que tocarlo, salvo un panel de
+  alta tasa que no llegue solo a su máximo.
 - **Batería** en la polybar → `ls /sys/class/power_supply/` y ajustar
   `battery=` / `adapter=` en `polybar/hack/modules.ini` (hoy `BAT1`/`ACAD`).
 - **Brillo** en la polybar → `ls /sys/class/backlight/` y ajustar el `card =`

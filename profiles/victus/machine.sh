@@ -9,9 +9,10 @@ if command -v nvidia-settings >/dev/null 2>&1; then
     nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }" >/dev/null 2>&1 &
 fi
 
-# 2) Resolucion + REFRESH del panel.
-#    << AJUSTA ESTO EN EL PRIMER ARRANQUE >>
-#    Corre  `xrandr`  para ver el nombre de tu salida (ej: eDP-1) y los Hz disponibles,
-#    y descomenta/edita la linea de abajo. Los Victus suelen ser 144Hz.
-# xrandr --output eDP-1 --mode 1920x1080 --rate 144
-xrandr --auto   # provisional hasta confirmar salida y refresh con `xrandr`
+# 2) Resolucion + refresh NATIVO del panel (auto-detectado).
+#    'xrandr --auto' elige el modo preferido del panel a su refresh nativo.
+#    En tu Victus basico eso es 60 Hz (panel estandar). En uno de alta tasa
+#    daria 120/144/165 solo. No hay numeros que poner a mano.
+xrandr --auto
+#    Si algun dia un panel NO llegara solo a su maximo, forzalo a mano:
+#      xrandr --output eDP-1 --rate <Hz>     (corre 'xrandr' para ver salida y Hz)
