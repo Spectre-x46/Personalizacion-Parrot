@@ -1,0 +1,37 @@
+# Programas que componen el setup (los instala install.sh automaticamente)
+# Regla Parrot: solo 'apt install' puntual, NUNCA 'apt upgrade'.
+
+## Grupo facil (apt install)
+git curl wget unzip fontconfig xdotool
+zsh                       # shell
+zsh-autosuggestions       # sugerencias en la terminal
+zsh-syntax-highlighting   # colores en la terminal
+feh                       # wallpaper
+rofi                      # menu de apps
+bat                       # 'cat' con colores (alias cat=bat)
+lsd                       # 'ls' bonito (alias ls=lsd)
+
+## Grupo "version nueva" (no van por apt normal)
+bspwm  0.9.12   -> compilar (github.com/baskerville/bspwm)
+sxhkd  0.6.3    -> compilar (github.com/baskerville/sxhkd)
+picom  v12      -> compilar (github.com/yshui/picom)   [DECIDIDO: Opcion A]
+kitty  0.44+    -> instalador oficial (sw.kovidgoyal.net/kitty)
+neovim 0.11.5   -> release oficial (github.com/neovim/neovim)
+
+## Extras (clonados por el script)
+powerlevel10k            -> ~/powerlevel10k  (prompt de la terminal)
+NvChad (v2.5)            -> ya viene dentro de common/nvim; plugins via Lazy
+
+## Fuentes (CRITICO - sin esto se ven cuadritos en vez de iconos)
+Hack Nerd Font           -> kitty
+Iosevka Nerd Font        -> polybar y rofi
+
+## Dependencias de compilacion (las instala el script)
+build-essential meson ninja-build cmake pkg-config
+libxcb* (composite, damage, glx, present, randr, render, render-util, shape,
+         shm, sync, util, xfixes, ewmh, icccm4, keysyms1, xinerama0)
+libx11-xcb-dev libxext-dev libpixman-1-dev libdbus-1-dev libconfig-dev
+libgl-dev libegl-dev libepoxy-dev libpcre2-dev libev-dev uthash-dev
+
+## SOLO en la Victus, a mano (necesita el hardware):
+nvidia-driver            -> driver propietario de la RTX 3060

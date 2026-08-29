@@ -28,10 +28,14 @@ bspc rule -a Screenkey manage=off
 bspc rule -a firefox desktop='^2' follow=on
 bspc rule -a thunar state=floating
 
-vmware-user-suid-wrapper &
-feh --bg-fill ~/Imágenes/Wallpapers/Spectre_x46.png &
-xrandr --auto
+# --- Fondo de pantalla (ruta neutral, sin depender del idioma del sistema) ---
+feh --bg-fill ~/.config/wallpapers/Spectre_x46.png &
+
+# --- Ajustes ESPECÍFICOS DE LA MÁQUINA (los pone install.sh según el perfil) ---
+# vmware -> vmware-user-suid-wrapper, randr-watcher, xrandr --auto
+# victus -> NVIDIA (ForceFullCompositionPipeline) + xrandr con refresh 144Hz
+[ -f ~/.config/bspwm/machine.sh ] && . ~/.config/bspwm/machine.sh
+
+# --- Barra y compositor (comunes) ---
 ~/.config/polybar/launch.sh --hack &
-# Auto-reload al cambio de resolución (VMware resize fix)
-pgrep -f randr-watcher.sh > /dev/null || ~/.config/bspwm/scripts/randr-watcher.sh &
 picom --config ~/.config/picom/picom.conf &

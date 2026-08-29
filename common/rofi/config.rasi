@@ -1,0 +1,102 @@
+configuration {
+    modi:                 "drun,run";
+    show-icons:           true;
+    icon-theme:           "Papirus-Dark";
+    drun-display-format:  "{name}";
+    display-drun:         " Apps";
+}
+
+@theme "/dev/null"
+
+* {
+    /* === PALETA SPECTRE === */
+    bg:           #0D1117ee;
+    bg-alt:       #161b22ee;
+    fg:           #c0caf5;
+    cyan:         #00ffff;
+    blue:         #00afff;
+    lightblue:    #afd7ff;
+    purple:       #af00ff;
+    gray:         #585858;
+    
+    accent:       @cyan;
+    urgent:       @purple;
+    
+    font:         "Iosevka Nerd Font 11";
+}
+
+window {
+    transparency:     "real";
+    background-color: @bg;
+    border:           2px;
+    border-color:     @accent;
+    border-radius:    12px;
+    width:            40%;
+    padding:          15px;
+}
+
+mainbox {
+    background-color: transparent;
+    spacing:          12px;
+    children:         [ inputbar, listview ];
+}
+
+inputbar {
+    background-color: @bg-alt;
+    text-color:       @fg;
+    padding:          12px 14px;
+    border:           1px;
+    border-color:     @blue;
+    border-radius:    8px;
+    spacing:          10px;
+    children:         [ prompt, entry ];
+}
+
+prompt {
+    background-color: transparent;
+    text-color:       @cyan;
+    font:             "Iosevka Nerd Font Bold 11";
+}
+
+entry {
+    background-color: transparent;
+    text-color:       @fg;
+    placeholder:      "Buscar...";
+    placeholder-color: @gray;
+}
+
+listview {
+    background-color: transparent;
+    padding:          0px;
+    spacing:          4px;
+    lines:            10;
+    columns:          1;
+    cycle:            true;
+    dynamic:          true;
+    scrollbar:        false;
+}
+
+element {
+    background-color: transparent;
+    text-color:       @fg;
+    padding:          8px 10px;
+    border-radius:    6px;
+    spacing:          10px;
+}
+
+element selected {
+    background-color: @blue;
+    text-color:       #000000;
+}
+
+element-icon {
+    background-color: transparent;
+    size:             22px;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       inherit;
+    vertical-align:   0.5;
+    margin:           0 4px;
+}

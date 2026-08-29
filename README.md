@@ -1,58 +1,30 @@
-# Personalización Parrot - Spectre_x46
+# Personalizacion-Parrot — SPECTRE (BSPWM + Polybar)
 
-> BSPWM + Polybar setup personalizado con paleta SPECTRE (cyan/azul/púrpura), 
-> diseñado para visión accesible y estética cyber moderna.
+Mi personalización completa de Parrot OS, lista para restaurar en una máquina
+nueva **con un solo comando**.
 
-## 🎨 Características
+## Instalación rápida (Parrot recién instalado)
 
-- **Window Manager**: BSPWM con 9 workspaces nombrados
-- **Status Bar**: Polybar tema `hack` adaptado con módulos custom (IP LAN, VPN tun0, Target HTB)
-- **Compositor**: Picom con esquinas redondeadas y transparencia (backend xrender, optimizado para VMware)
-- **Launcher**: Rofi con tema SPECTRE custom
-- **Terminal**: Kitty + Iosevka Nerd Font + banner ASCII
-- **Shell**: Zsh + Powerlevel10k
-
-## 🎯 Paleta SPECTRE (daltónico-friendly)
-
-| Estado | Color | Hex |
-|---|---|---|
-| Activo / Cyan principal | Cyan Neón | `#00ffff` |
-| Ocupado / Secundario | Deep Sky Blue | `#00afff` |
-| Urgente | Neon Purple | `#af00ff` |
-| Inactivo | Dark Gray | `#585858` |
-
-## 📦 Estructura
-
-```
-.
-├── bspwm/          # Window Manager + scripts (auto-resize VMware)
-├── sxhkd/          # Atajos de teclado
-├── polybar/hack/   # Status bar tema custom
-│   ├── scripts/    # my_ip, vpn, target
-│   └── modules.ini # Workspaces SPECTRE
-├── picom/          # Compositor (xrender + corners)
-├── kitty/          # Terminal config
-└── rofi/           # Launcher tema SPECTRE
+```sh
+git clone https://github.com/Spectre-x46/Personalizacion-Parrot.git
+cd Personalizacion-Parrot
+chmod +x install.sh
+./install.sh                    # HP Victus / NVIDIA (por defecto)
+# ./install.sh --profile vmware # replicar la VM actual
 ```
 
-## ⌨️ Atajos clave
+El script instala programas, fuentes y deja toda la configuración puesta.
+**Nunca hace `apt upgrade`** (que rompe Parrot); solo instalaciones puntuales.
 
-- `Super + Enter` → Kitty
-- `Super + D` → Rofi (apps)
-- `Super + 1-9` → Cambiar workspace
-- `Super + Shift + 1-9` → Mover ventana a workspace
-- `Super + Q` → Cerrar ventana
-- `Super + F5` → Fix layout (resize VMware)
+## Qué hay aquí
 
-## 🛠️ Dependencias
+- **`common/`** → Caja 1: todo lo portable (rice + shell + nvim + wallpaper).
+- **`profiles/`** → Caja 2: lo específico de cada máquina (`vmware` / `victus`).
+- **`install.sh`** → el instalador de un solo comando.
+- **`packages.txt`** → lista de programas y de dónde sale cada uno.
+- **`CAJAS.md`** → qué archivo va en qué caja y qué se ajusta a mano.
 
-```
-bspwm sxhkd polybar picom rofi kitty 
-zsh zsh-autosuggestions zsh-syntax-highlighting
-figlet lolcat papirus-icon-theme
-```
+## Componentes
 
-## 📸 Setup
-
-Wallpaper: SPECTRE_X46  
-Banner terminal: NEO (figlet slant + lolcat seed 60)
+BSPWM · sxhkd · Polybar (tema *hack*) · picom v12 · kitty · rofi ·
+Neovim (NvChad v2.5) · zsh + powerlevel10k · Hack/Iosevka Nerd Font.

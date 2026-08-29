@@ -1,0 +1,93 @@
+/*
+ * Tema SPECTRE - Paleta cyan/azul/púrpura para daltónicos
+ * Diseñado para combinar con polybar hack y picom
+ */
+
+* {
+    /* === PALETA SPECTRE === */
+    spectre-cyan:       #00ffff;
+    spectre-blue:       #00afff;
+    spectre-lightblue:  #afd7ff;
+    spectre-purple:     #af00ff;
+    spectre-gray:       #585858;
+    spectre-bg:         #1a1a1aee;
+    spectre-bg-light:   #2a2a2aee;
+    spectre-fg:         #c0caf5;
+    
+    background-color:   transparent;
+    text-color:         @spectre-fg;
+    font:               "Iosevka Nerd Font 11";
+}
+
+window {
+    width:              40%;
+    transparency:       "real";
+    background-color:   @spectre-bg;
+    border:             2px;
+    border-color:       @spectre-cyan;
+    border-radius:      12px;
+    padding:            20px;
+}
+
+mainbox {
+    children:           [ inputbar, listview ];
+    spacing:            15px;
+    background-color:   transparent;
+}
+
+inputbar {
+    children:           [ prompt, entry ];
+    background-color:   @spectre-bg-light;
+    border:             1px;
+    border-color:       @spectre-blue;
+    border-radius:      8px;
+    padding:            10px 14px;
+    spacing:            10px;
+}
+
+prompt {
+    background-color:   transparent;
+    text-color:         @spectre-cyan;
+    font:               "Iosevka Nerd Font Bold 11";
+}
+
+entry {
+    background-color:   transparent;
+    text-color:         @spectre-fg;
+    placeholder:        "Buscar...";
+    placeholder-color:  @spectre-gray;
+}
+
+listview {
+    background-color:   transparent;
+    columns:            1;
+    lines:              10;
+    spacing:            4px;
+    cycle:              true;
+    dynamic:            true;
+    scrollbar:          false;
+}
+
+element {
+    background-color:   transparent;
+    text-color:         @spectre-fg;
+    border-radius:      6px;
+    padding:            8px 12px;
+    spacing:            10px;
+}
+
+element selected {
+    background-color:   @spectre-blue;
+    text-color:         #000000;
+}
+
+element-icon {
+    background-color:   transparent;
+    size:               24px;
+}
+
+element-text {
+    background-color:   transparent;
+    text-color:         inherit;
+    vertical-align:     0.5;
+}
