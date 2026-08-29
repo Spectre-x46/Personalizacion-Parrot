@@ -1,0 +1,105 @@
+# ==========================================
+# BANNER NEO (debe ir ANTES del instant prompt)
+# ==========================================
+if [[ -o interactive ]]; then
+    figlet -f slant "NEO" | lolcat -F 0.3 -p 2 -S 60
+    echo ""
+fi
+
+# ==========================================
+# POWERLEVEL10K INSTANT PROMPT
+# ==========================================
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# ==========================================
+# TEMA POWERLEVEL10K
+# ==========================================
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+# ==========================================
+# PLUGINS
+# ==========================================
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# ==========================================
+# CONFIG POWERLEVEL10K
+# ==========================================
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# ==========================================
+# PATH
+# ==========================================
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+
+# ==========================================
+# ALIAS
+# ==========================================
+alias cat='bat'
+alias catn='bat --style=plain'
+alias catnp='bat --style=plain --paging=never'
+alias ll='lsd -lh --group-dirs=first'
+alias la='lsd -a --group-dirs=first'
+alias l='lsd --group-dirs=first'
+alias lla='lsd -la --group-dirs=first'
+alias ls='lsd --group-dirs=first'
+
+# ==========================================
+# FIX LSD
+# ==========================================
+export LS_COLORS="$(echo $LS_COLORS | sed 's/:01;/:/g')"
+
+# ==========================================
+# FUNCIONES HTB
+# ==========================================
+# Target HTB para polybar
+target() {
+    local target_file="$HOME/.config/polybar/hack/.target"
+    if [ -z "$1" ]; then
+        echo "" > "$target_file"
+        echo "[+] Target limpiado"
+    elif [ -z "$2" ]; then
+        echo "$1" > "$target_file"
+        echo "[+] Target: $1"
+    else
+        echo "$1 $2" > "$target_file"
+        echo "[+] Target: $1 - $2"
+    fi
+}
+
+# ==========================================
+# COLORES ZSH SYNTAX HIGHLIGHTING
+# ==========================================
+typeset -gA ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[command]='fg=blue,bold'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[function]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=magenta,bold'
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=yellow'
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=white'
+ZSH_HIGHLIGHT_STYLES[argument]='fg=white'
+ZSH_HIGHLIGHT_STYLES[option]='fg=yellow'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#5c7c99'
+
+# ==========================================
+# SYNTAX HIGHLIGHTING (SIEMPRE AL FINAL)
+# ==========================================
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# ==========================================
+# ARQUITECTO IA
+# ==========================================
+alias arquitecto='~/CyberAcademy/scripts/spectre-ollama.sh'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# opencode
+export PATH=/home/neo/.opencode/bin:$PATH
+
+#Deepseek
+export DEEPSEEK_API_KEY=$(cat ~/.spectre/deepseek_key)
